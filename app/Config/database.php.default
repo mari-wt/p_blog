@@ -70,11 +70,11 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
+		'login' => 'root',
+		'password' => '',
 		'database' => 'practice_blog',
 		'prefix' => '',
-		//'encoding' => 'utf8',
+		'encoding' => 'utf8',
 	);
 
 	public $test = array(
@@ -85,6 +85,6 @@ class DATABASE_CONFIG {
 		'password' => 'password',
 		'database' => 'practice_blog',
 		'prefix' => '',
-		//'encoding' => 'utf8',
+		'encoding' => 'utf8',
 	);
 }
