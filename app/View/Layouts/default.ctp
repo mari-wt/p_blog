@@ -55,8 +55,8 @@
 						<li><a href="#about">About</a></li>
 						<li><a href="/Posts/index">Posts</a></li>
 						<li><a href="#contact">Contact</a></li>
-						<li><a href="">Log in</a></li>
-						<li><a href="signin">Sign in</a></li>
+						<li><a href="/Users/login">Log in</a></li>
+						<li><a href="/Users/add">Sign in</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>

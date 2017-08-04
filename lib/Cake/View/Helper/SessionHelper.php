@@ -1,5 +1,4 @@
-<?php
-/**
+<?php /**
  * Session Helper provides access to the Session in the Views.
  *
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)

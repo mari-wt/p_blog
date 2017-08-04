@@ -94,6 +94,10 @@ Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
 	'CacheDispatcher'
 ));
+Configure::write('Session', array(
+	'defaults' => 'cake'
+));
+
 
 /**
  * Configures default file logging options
@@ -110,3 +114,4 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 CakePlugin::load(array('TwitterBootstrap'));
+CakePlugin::load('DebugKit');
