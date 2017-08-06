@@ -29,7 +29,7 @@ App::uses('AppModel', 'Model');
  *
  * @package       app.Model
  */
-class PostModel extends AppModel {
+class Post extends AppModel {
 	
 	public $validate = array(
         'title' => array(
@@ -43,4 +43,15 @@ class PostModel extends AppModel {
 	public function isOwnedBy($post, $user) {
 		return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
 	}
+	
+	public $hasAndBelongsToMany = array(
+		'Category' => 
+			array(
+				'className'              => 'Category',
+				'joinTable'              => 'categories_post',
+				'foreignKey'             => 'post_id',
+				'associationForeignKey'  => 'category_id',
+			)
+	);
+
 }

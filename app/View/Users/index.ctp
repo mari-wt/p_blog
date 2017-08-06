@@ -1,7 +1,7 @@
-<h1>Posts index</h1>
+<h1>My Page</h1>
 <?php echo $this->Html->link(
-    'Add Post',
-    array('controller' => 'posts', 'action' => 'add')
+    'Edit My Profile',
+    array('controller' => 'users', 'action' => 'edit')
 ); ?>
 <table>
 	<th>id</th>
@@ -10,16 +10,16 @@
 	<th>Action</th>
 	<th>Created</th>
 	
-	<?php foreach ($posts as $post): ?>
+	<?php foreach ($users as $user): ?>
 		<tr>
-			<td><?php echo $post['Post']['id']; ?></td>
-			<td><?php echo $this->Html->link($post['Post']['title'],array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></td>
+			<td><?php echo $user['Post']['id']; ?></td>
+			<td><?php echo $this->Html->link($user['Post']['title'],array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></td>
 			<td><?php ?></td>
 			<td>
 				<?php
                 echo $this->Form->postLink(
                     'Delete',
-                    array('action' => 'delete', $post['Post']['id']),
+                    array('action' => 'delete', $user['Post']['id']),
                     array('confirm' => 'Are you sure?')
                 );
 				?>
@@ -36,3 +36,7 @@
 	<?php endforeach; ?>
 </table>
 
+<?php echo $this->Html->link(
+    'log out',
+    array('controller' => 'users', 'action' => 'logout')
+); ?>

@@ -20,6 +20,7 @@
  */
 
 App::uses('Controller', 'Controller');
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 /**
  * Application Controller
@@ -35,21 +36,26 @@ class AppController extends Controller {
 	
 	public $components = array(
         'DebugKit.Toolbar',
-//        'Session',
+        'Session',
         'Flash',
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'posts',
-                'action' => 'index'
+                'action' => 'posts/index'
             ),
             'logoutRedirect' => array(
-                'controller' => 'pages',
-                'action' => 'display',
+                'controller' => 'users',
+                'action' => 'users/logout',
                 'home'
             ),
             'authenticate' => array(
                 'Form' => array(
-                    'passwordHasher' => 'Blowfish'
+					'userModel' => 'user',
+					'fields' => array(
+						'username' => 'username',
+						'password' => 'password',
+					),
+//                    'passwordHasher' => 'Blowfish'
                 )
             ),
 			'authorize' => array('Controller')
@@ -67,6 +73,25 @@ class AppController extends Controller {
 	}
 	
 	public function beforeFilter() {
-        $this->Auth->allow('index', 'view');
+        $this->Auth->allow('index', 'view', 'pages');
     }
+	
+	
+	public function initial_dataset() {
+//		//カテゴリー
+//		$this->loadModel('Category');
+//		$conditions = $this->Category->getStatusAndTermConditions('Category');
+//		$category_arr = $this->Category->find('all', array('conditions' => $conditions, 'order' => 'sort asc'));
+//		$this->set('category_arr', $category_arr);
+//		
+		$category_arr = array();
+		foreach ($sl_data as $key => $val) {
+			if (!isset($category_arr[$val['SalesCategory']['page_layout_number']])) {
+				$sales_categories[$val['SalesCategory']['page_layout_number']] = array();
+			}
+			$category_arr[$val['Category']['page_layout_number']][] = $val;
+		}
+		$this->set('category_arr', $category_arr);
+
+	}
 }

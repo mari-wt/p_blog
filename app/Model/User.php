@@ -30,7 +30,7 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
  *
  * @package       app.Model
  */
-class UserModel extends Model {
+class User extends Model {
 	public $validate = array(
         'username' => array(
             'required' => array(
@@ -41,7 +41,7 @@ class UserModel extends Model {
         'password' => array(
             'required' => array(
                 'rule' => 'notBlank',
-                'message' => 'A password is required'
+                'message' => 'A username is required'
             )
         ),
         'role' => array(
@@ -54,13 +54,21 @@ class UserModel extends Model {
     );
 	
 	public function beforeSave($options = array()) {
+		
+		parent::beforeSave($options);
+		
+//		if (isset($this->data[$this->alias]['password'])) {
+//			$passwordHasher = new BlowfishPasswordHasher();
+//			$this->data[$this->alias]['password'] = $passwordHasher->hash(
+//				$this->data[$this->alias]['password']
+//			);
+//			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
 		if (isset($this->data[$this->alias]['password'])) {
-			$passwordHasher = new BlowfishPasswordHasher();
-			$this->data[$this->alias]['password'] = $passwordHasher->hash(
-				$this->data[$this->alias]['password']
-			);
+            $passwordHasher = new SimplePasswordHasher();
+            $this->data[$this->alias]['password'] = $passwordHasher->hash($this->data[$this->alias]['password']);
 		}
 		return true;
+		
 	}
 
 }

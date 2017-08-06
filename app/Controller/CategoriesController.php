@@ -36,6 +36,7 @@ class CategoriesController extends AppController {
 	
 	public function index (){
 		$this->set('categories',$this->Category->find('all'));
+		$this->set('categories',$category);
 	}
 	
 }

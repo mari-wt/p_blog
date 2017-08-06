@@ -29,11 +29,14 @@ App::uses('AppModel', 'Model');
  *
  * @package       app.Model
  */
-class CategoryModel extends Model {
-	public $hasMany = array(
-		'Post' => array(
-			'className' => 'Post',
-			'foreignKey' => 'category_id',
-		)
+class Category extends Model {
+	public $hasAndBelongsToMany = array(
+		'Post' =>
+			array(
+				'className'              => 'post',
+				'joinTable'              => 'categories_post',
+				'foreignKey'             => 'category_id',
+				'associationForeignKey'  => 'post_id',
+			)
 	);
 }

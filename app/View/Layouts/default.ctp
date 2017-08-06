@@ -52,11 +52,12 @@
 				<div class="nav-collapse">
 					<ul class="nav">
 						<li class="active"><a href="/Pages/home">Home</a></li>
-						<li><a href="#about">About</a></li>
+						<li><a href="/Users/index">About</a></li>
 						<li><a href="/Posts/index">Posts</a></li>
 						<li><a href="#contact">Contact</a></li>
 						<li><a href="/Users/login">Log in</a></li>
-						<li><a href="/Users/add">Sign in</a></li>
+						<li><a href="/Users/logout">Log out</a></li>
+						<li><a href="/Users/add">Sign up</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>

@@ -30,6 +30,8 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 	
+	public $components = array('Auth');
+	
 	public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add','logout');
@@ -49,7 +51,7 @@ class UsersController extends AppController {
     }
 
     public function add() {
-        if ($this->request->is('post')) {
+        if (!empty($this->data)) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
                 $this->Flash->success(__('The user has been saved'));
@@ -99,13 +101,16 @@ class UsersController extends AppController {
     }
 
 	public function login() {
-		if ($this->request->is('post')) {
+//		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
 				$this->redirect($this->Auth->redirect());
+				echo 'GOOD!';
 			} else {
 				$this->Flash->error(__('Invalid username or password, try again'));
+				echo 'TRY AGAIN';
+				
 			}
-		}
+//		}
 	}
 
 	public function logout() {

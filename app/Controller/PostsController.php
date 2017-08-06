@@ -35,6 +35,7 @@ class PostsController extends AppController {
 	public $layout = 'default';
 	public $helpers = array('Html','Form','Flash');
 	public $components = array('Flash');
+	
 
 	public function isAuthorized($user) {
 		// 登録済ユーザーは投稿できる
@@ -55,10 +56,13 @@ class PostsController extends AppController {
 	
 	
 	public function index (){
+		$this->loadModel('Category');
 		$this->set('posts',$this->Post->find('all'));
 	}
 	
 	public function view($id = null){
+		
+		$this->loadModel('Category');
 		
 		if(!$id){
 			throw new NotFoundException(__('Invalid post'));
@@ -71,9 +75,13 @@ class PostsController extends AppController {
 		}
 		
 		$this->set('post',$post);
+//		debug($post);
 	}
 	
 	public function add() {
+		
+		$this->loadModel('Category');
+		
         if ($this->request->is('post')) {
 			$this->request->data['Post']['user_id'] = $this->Auth->user('id');
 			if ($this->Post->save($this->request->data)) {
@@ -84,6 +92,9 @@ class PostsController extends AppController {
     }
 	
 	public function edit($id = null) {
+		
+		$this->loadModel('Category');
+		
 		if (!$id) {
 			throw new NotFoundException(__('Invalid post'));
 		}
